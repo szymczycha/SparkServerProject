@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <table id="table">
+
+    </table>
+    <script>
+        let table = document.getElementById("table");
+
+        getData = async () => {
+            table.innerHTML = "";
+            let response = await fetch("/json");
+            console.log(response)
+            if (!response.ok)
+                console.log(response.status);
+            let cars = await response.json();
+            console.log(response.status);
+            console.log(cars);
+            cars.forEach(car=>{
+                let row = document.createElement("tr")
+                let idCell = document.createElement("td")
+                idCell.innerText = car.id;
+                row.append(idCell)
+                let uuidCell = document.createElement("td")
+                uuidCell.innerText = car.uuid;
+                row.append(uuidCell)
+                let modelCell = document.createElement("td")
+                modelCell.innerText = car.model;
+                row.append(modelCell)
+                let yearCell = document.createElement("td")
+                yearCell.innerText = car.year;
+                row.append(yearCell)
+                let airbagsCell = document.createElement("td")
+                // airbagsCell.innerText = car.airbags.map((item, i) => i==0 ? +item.description +": "+ item.value : "\n"+item.description +": "+ item.value);
+                airbagsCell.innerText = car.airbags.map(item => "\n"+item.description +": "+ item.value);
+                row.append(airbagsCell)
+                let colorCell = document.createElement("td")
+                colorCell.style.backgroundColor = car.color;
+                colorCell.style.width = "100px";
+                row.append(colorCell)
+                let deleteCell = document.createElement("td")
+                let deleteButton = document.createElement("button")
+                deleteButton.innerText = "delete car"
+                deleteCell.append(deleteButton)
+                row.append(deleteCell)
+                let updateCell = document.createElement("td")
+                let updateButton = document.createElement("button")
+                updateButton.innerText = "update car"
+                updateCell.append(updateButton)
+                row.append(updateCell)
+
+
+                table.append(row);
+            })
+        }
+        getData();
+    </script>
+</body>
+</html>
