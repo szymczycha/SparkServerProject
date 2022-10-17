@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        table, td{
+            border: 1px solid black;
+        }
+        .fade{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(128,128,128,0.5);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .fade div{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+<a href="index.html">index</a>
+<button id="generateCars">Generuj losowo bazę samochodów</button>
+<table id="table">
+
+</table>
+<script>
+    let table = document.getElementById("table");
+    document.getElementById("generateCars").onclick = async function (){
+        await fetch("/generateRandom", {method:"POST"});
+        getData();
+    }
+    getData = async () => {
+        table.innerHTML = "";
+        let response = await fetch("/json");
+        console.log(response)
+        if (!response.ok)
+            console.log(response.status);
+        let cars = await response.json();
+        console.log(response.status);
+        console.log(cars);
+        cars.forEach(car=>{
+            let row = document.createElement("tr")
+            let idCell = document.createElement("td")
+            idCell.innerText = car.id;
+            row.append(idCell)
+            let uuidCell = document.createElement("td")
+            uuidCell.innerText = car.uuid;
+            row.append(uuidCell)
+            let modelCell = document.createElement("td")
+            modelCell.innerText = car.model;
+            row.append(modelCell)
+            let yearCell = document.createElement("td")
+            yearCell.innerText = car.year;
+            row.append(yearCell)
+            let airbagsCell = document.createElement("td")
+            // airbagsCell.innerText = car.airbags.map((item, i) => i==0 ? +item.description +": "+ item.value : "\n"+item.description +": "+ item.value);
+            airbagsCell.innerText = car.airbags.map(item => "\n"+item.description +": "+ item.value);
+            row.append(airbagsCell)
+            let colorCell = document.createElement("td")
+            colorCell.style.backgroundColor = car.color;
+            colorCell.style.width = "100px";
+            row.append(colorCell)
+            let deleteCell = document.createElement("td")
+            let generateInvoiceButton = document.createElement("button");
+            generateInvoiceButton.innerText = "generuj fakturę VAT";
+            generateInvoiceButton.onclick = async function(){
+                await fetch("/generateInvoice", {method:"POST", body:JSON.stringify({
+                        uuid: car.uuid
+                    })})
+                getData();
+            }
+            deleteCell.append(generateInvoiceButton)
+            row.append(deleteCell)
+            let updateCell = document.createElement("td")
+            if(car.hasInvoice){
+                let downloadInvoiceButton = document.createElement("button");
+                downloadInvoiceButton.innerText = "pobierz";
+                downloadInvoiceButton.onclick = async function(){
+                    console.log("downloading invoice...")
+                }
+                updateCell.append(downloadInvoiceButton)
+            }
+            row.append(updateCell)
+
+
+            table.append(row);
+        })
+    }
+    getData();
+</script>
+</body>
+</html>
