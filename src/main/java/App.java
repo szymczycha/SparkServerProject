@@ -1,7 +1,12 @@
 import static spark.Spark.*;
 
-import java.lang.reflect.Array;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.lang.reflect.Type;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.UUID;
@@ -11,6 +16,8 @@ import static spark.Spark.externalStaticFileLocation;
 import com.fasterxml.uuid.Generators;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.PdfWriter;
 import spark.Request;
 import spark.Response;
 
@@ -23,12 +30,84 @@ public class App {
         post("/delete", (req,res) -> deleteCar(req,res,cars));
         post("/update", (req,res) -> updateCar(req,res,cars));
         post("/generateRandom", (req,res) -> generateCars(req,res,cars));
+        post("/generateInvoice", (req, res) -> generateInvoice(req,res,cars));
+        get("/downloadInvoice", (req,res) -> downloadInvoice(req,res,cars));
     }
+
+    private static String downloadInvoice(Request req, Response res, ArrayList<Car> cars) throws IOException {
+        Gson gson = new Gson();
+        String uuid = req.queryParams("uuid");
+        System.out.println(uuid);
+        res.type("application/octet-stream"); //
+        res.header("Content-Disposition", "attachment; filename="+uuid+".pdf"); // nagłówek
+
+        OutputStream outputStream = null;
+        try {
+            outputStream = res.raw().getOutputStream();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        outputStream.write(Files.readAllBytes(Path.of("invoices/" + uuid + ".pdf"))); // response pliku do przeglądarki
+        return "";
+    }
+
+    private static String generateInvoice(Request req, Response res, ArrayList<Car> cars) {
+        Gson gson = new Gson();
+        UUID carUUID = gson.fromJson(req.body(), Car.class).getUuid();
+        Car carInCars = null;
+
+        for(Car car: cars){
+            if(car.getUuid().equals(carUUID)){
+                if(car.isHasInvoice()){
+                    return "{invoice:\"exists\"}";
+                }
+                carInCars = car;
+                break;
+            }
+        }
+        Document document = new Document(); // dokument pdf
+        String path = "invoices/"+carUUID.toString()+".pdf"; // lokalizacja zapisu
+        try {
+            PdfWriter.getInstance(document, new FileOutputStream(path));
+        } catch (DocumentException e) {
+            throw new RuntimeException(e);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        document.open();
+        try {
+            Font bigFont = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
+            Paragraph chunk = new Paragraph("FAKTURA dla: " + carUUID, bigFont); // akapit
+            document.add(chunk);
+            chunk = new Paragraph("Model: " + carInCars.getModel(), bigFont); // akapit
+            document.add(chunk);
+            chunk = new Paragraph("Kolor: " + carInCars.getColor(), bigFont); // akapit
+            document.add(chunk);
+            chunk = new Paragraph("rok: " + carInCars.getYear(), bigFont); // akapit
+            document.add(chunk);
+            for (Airbag airbag :
+                    carInCars.getAirbags()) {
+                Paragraph paragraph = new Paragraph("poduszka: "+airbag.getDescription()+" - "+airbag.isValue());
+                document.add(paragraph);
+            }
+
+        } catch (DocumentException e) {
+            throw new RuntimeException(e);
+        }
+
+
+
+        document.close();
+        carInCars.setHasInvoice(true);
+        return "{success:\"tak\"}";
+    }
+
     private static String generateCars(Request req, Response res, ArrayList<Car> cars){
         for (int i = 0; i<20; i++){
             cars.add(new Car(cars.size()+1));
         }
-        return "{success:\"tak\"";
+        return "{success:\"tak\"}";
     }
     private static String updateCar(Request req, Response res, ArrayList<Car> cars) {
         Gson gson = new Gson();
@@ -169,7 +248,12 @@ class Car{
     }
     public Car(int id){
         this.id = id;
-        UUID uuid = Generators.randomBasedGenerator().generate();
+        this.uuid = Generators.randomBasedGenerator().generate();
+        ArrayList<String> models = new ArrayList<>();
+        models.add("Fiat");
+        models.add("BMW");
+        models.add("Audi");
+        this.model = models.get((int) Math.floor(Math.random()*3));
         this.airbags = new ArrayList<>();
         this.airbags.add(new Airbag("pasażer", false));
         this.airbags.add(new Airbag("kierowca", false));
@@ -199,6 +283,22 @@ class Car{
 class Airbag{
     private String description;
     private boolean value;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public boolean isValue() {
+        return value;
+    }
+
+    public void setValue(boolean value) {
+        this.value = value;
+    }
 
     public Airbag(String description, boolean value) {
         this.description = description;

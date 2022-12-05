@@ -80,8 +80,14 @@
             let generateInvoiceButton = document.createElement("button");
             generateInvoiceButton.innerText = "generuj fakturę VAT";
             generateInvoiceButton.onclick = async function(){
+                console.log(car.uuid);
+                console.log(car);
                 await fetch("/generateInvoice", {method:"POST", body:JSON.stringify({
-                        uuid: car.uuid
+                        id: car.id,
+                        uuid: car.uuid,
+                        model: car.model,
+                        year: car.year,
+                        airbags: car.airbags
                     })})
                 getData();
             }
@@ -89,12 +95,15 @@
             row.append(deleteCell)
             let updateCell = document.createElement("td")
             if(car.hasInvoice){
-                let downloadInvoiceButton = document.createElement("button");
-                downloadInvoiceButton.innerText = "pobierz";
-                downloadInvoiceButton.onclick = async function(){
-                    console.log("downloading invoice...")
-                }
-                updateCell.append(downloadInvoiceButton)
+                let downloadInvoiceLink = document.createElement("a");
+                downloadInvoiceLink.innerText = "pobierz";
+                // downloadInvoiceLink.onclick = async function(){
+                //     await fetch("/downloadInvoice?" + new URLSearchParams({uuid: car.uuid})).then((data) => {
+                //         console.log(data);
+                //     });
+                // }
+                downloadInvoiceLink.href = "/downloadInvoice?uuid="+car.uuid
+                updateCell.append(downloadInvoiceLink)
             }
             row.append(updateCell)
 
