@@ -31,11 +31,42 @@
             justify-content: center;
             align-items: center;
         }
+        .column{
+            display: flex;
+            flex-direction: column;
+
+        }
+        body{
+            display: flex;
+        }
     </style>
 </head>
 <body>
-<a href="index.html">index</a>
-<button id="generateCars">Generuj losowo bazę samochodów</button>
+<div class="column">
+    <a href="index.html">index</a>
+    <button id="generateCars">Generuj losowo bazę samochodów</button>
+    <button id="generateAllCarsInvoice">faktura za wszystkie auta</button>
+    <div id="allCarsInvoices" >
+
+    </div>
+    <select id="rocznik">
+        <option>2000</option>
+        <option>2001</option>
+        <option>2002</option>
+        <option>2003</option>
+        <option>2004</option>
+        <option>2005</option>
+        <option>2006</option>
+        <option>2007</option>
+        <option>2008</option>
+        <option>2009</option>
+        <option>2010</option>
+    </select>
+    <button id="generateYearCarsInvoice">faktura - auta z danego rocznika</button>
+    <input type="text" id="minCarCost"/>
+    <input type="text" id="maxCarCost"/>
+    <button id="generatePriceCarsInvoice">faktura - auta z zakresu cen</button>
+</div>
 <table id="table">
 
 </table>
@@ -43,6 +74,10 @@
     let table = document.getElementById("table");
     document.getElementById("generateCars").onclick = async function (){
         await fetch("/generateRandom", {method:"POST"});
+        getData();
+    }
+    document.getElementById("generateAllCarsInvoice").onclick = async function(){
+        await fetch("/generateAllCarsInvoice", {method:"POST"});
         getData();
     }
     getData = async () => {

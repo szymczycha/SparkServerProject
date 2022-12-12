@@ -1,5 +1,6 @@
 import static spark.Spark.*;
 
+import java.awt.*;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -17,6 +18,7 @@ import com.fasterxml.uuid.Generators;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.itextpdf.text.*;
+import com.itextpdf.text.Font;
 import com.itextpdf.text.pdf.PdfWriter;
 import spark.Request;
 import spark.Response;
@@ -65,40 +67,7 @@ public class App {
                 break;
             }
         }
-        Document document = new Document(); // dokument pdf
-        String path = "invoices/"+carUUID.toString()+".pdf"; // lokalizacja zapisu
-        try {
-            PdfWriter.getInstance(document, new FileOutputStream(path));
-        } catch (DocumentException e) {
-            throw new RuntimeException(e);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-
-        document.open();
-        try {
-            Font bigFont = FontFactory.getFont(FontFactory.COURIER, 16, BaseColor.BLACK);
-            Paragraph chunk = new Paragraph("FAKTURA dla: " + carUUID, bigFont); // akapit
-            document.add(chunk);
-            chunk = new Paragraph("Model: " + carInCars.getModel(), bigFont); // akapit
-            document.add(chunk);
-            chunk = new Paragraph("Kolor: " + carInCars.getColor(), bigFont); // akapit
-            document.add(chunk);
-            chunk = new Paragraph("rok: " + carInCars.getYear(), bigFont); // akapit
-            document.add(chunk);
-            for (Airbag airbag :
-                    carInCars.getAirbags()) {
-                Paragraph paragraph = new Paragraph("poduszka: "+airbag.getDescription()+" - "+airbag.isValue());
-                document.add(paragraph);
-            }
-
-        } catch (DocumentException e) {
-            throw new RuntimeException(e);
-        }
-
-
-
-        document.close();
+        Invoice.generateInvoice(carInCars);
         carInCars.setHasInvoice(true);
         return "{success:\"tak\"}";
     }
@@ -171,6 +140,7 @@ public class App {
     }
 }
 class Car{
+    private int vat;
     private int id;
     private UUID uuid;
     private String model;
@@ -247,6 +217,14 @@ class Car{
                 '}';
     }
     public Car(int id){
+        double vatRoll = Math.random();
+        if(vatRoll <= 0.5){
+            this.vat = 22;
+        }else if(vatRoll <= 0.9){
+            this.vat = 7;
+        }else{
+            this.vat = 0;
+        }
         this.id = id;
         this.uuid = Generators.randomBasedGenerator().generate();
         ArrayList<String> models = new ArrayList<>();
@@ -267,6 +245,14 @@ class Car{
 
     }
     public Car(int id, String model, int year, String color, ArrayList<Airbag> airbags) {
+        double vatRoll = Math.random();
+        if(vatRoll <= 0.5){
+            this.vat = 22;
+        }else if(vatRoll <= 0.9){
+            this.vat = 7;
+        }else{
+            this.vat = 0;
+        }
         this.id = id;
         UUID uuid = Generators.randomBasedGenerator().generate();
         this.uuid = uuid;
