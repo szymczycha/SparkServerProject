@@ -1,39 +1,153 @@
 import static spark.Spark.*;
 
-import java.awt.*;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Random;
-import java.util.UUID;
+import java.util.*;
+import java.util.List;
 
 import static spark.Spark.externalStaticFileLocation;
 
 import com.fasterxml.uuid.Generators;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.itextpdf.text.*;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.pdf.PdfWriter;
 import spark.Request;
 import spark.Response;
 
 public class App {
     public static void main(String[] args) {
+        ArrayList<Invoice> allCarsInvoicesNames = new ArrayList<>();
+        ArrayList<Invoice> byYearInvoicesNames = new ArrayList<>();
+        ArrayList<Invoice> byPriceInvoiceNames = new ArrayList<>();
+
         ArrayList<Car> cars = new ArrayList<>();
-        externalStaticFileLocation("C:\\Users\\4pa\\Desktop\\Test\\src\\main\\resources\\public");
+//        externalStaticFileLocation("C:\\Users\\4pa\\Desktop\\Test\\src\\main\\resources\\public");
+        externalStaticFileLocation("C:\\Users\\szymc\\OneDrive\\Pulpit\\SparkServerProject\\src\\main\\resources\\public");
         post("/add", (req,res) -> add(req,res,cars));
         get("/json", (req,res) -> jsonCars(req,res,cars));
         post("/delete", (req,res) -> deleteCar(req,res,cars));
         post("/update", (req,res) -> updateCar(req,res,cars));
         post("/generateRandom", (req,res) -> generateCars(req,res,cars));
         post("/generateInvoice", (req, res) -> generateInvoice(req,res,cars));
+        post("/generateAllCarsInvoice", (req, res) -> generateAllCarsInvoice(req,res,cars, allCarsInvoicesNames));
+        post("/generateCarsByYearInvoice", (req,res) -> generateCarsByYearInvoice(req,res,cars,byYearInvoicesNames));
+        post("/generateCarsByPriceInvoice", (req,res) -> generateCarsByPriceInvoice(req,res,cars,byPriceInvoiceNames));
+        post("/getAllCarsInvoices", (req, res) -> getAllCarsInvoices(req,res,allCarsInvoicesNames));
+        post("/getCarsByYearInvoices", (req, res) -> getByYearInvoices(req,res,byYearInvoicesNames));
+        post("/getCarsByPriceInvoices", (req, res) -> getCarsByPriceInvoices(req,res,byPriceInvoiceNames));
         get("/downloadInvoice", (req,res) -> downloadInvoice(req,res,cars));
+        get("/downloadAllCarsInvoice", (req,res) -> downloadAllCarsInvoice(req,res,cars));
+        get("/downloadByYearInvoice", (req,res) -> downloadByYearInvoice(req,res,cars));
+        get("/downloadByPriceInvoice", (req,res) -> downloadByPriceInvoice(req,res,cars));
+    }
+
+    private static String getCarsByPriceInvoices(Request req, Response res, ArrayList<Invoice> byPriceInvoiceNames) {
+        Gson gson = new Gson();
+        Type listType = new TypeToken<ArrayList<Invoice>>(){}.getType();
+        res.type("application/json");
+        return gson.toJson(byPriceInvoiceNames, listType);
+    }
+
+    private static String generateCarsByPriceInvoice(Request req, Response res, ArrayList<Car> cars, ArrayList<Invoice> byPriceInvoiceNames) {
+        Gson gson = new Gson();
+        int min = gson.fromJson(req.body(), Invoice.class).getMin();
+        int max = gson.fromJson(req.body(), Invoice.class).getMax();
+        ArrayList<Car> carsByPrice =  new ArrayList(cars.stream().filter(car-> car.getPrice()<=max && car.getPrice()>=min).toList());
+        Invoice invoice = new Invoice(System.currentTimeMillis(), "faktura za ceny "+min+"-"+max, "","", carsByPrice, min,max);
+        byPriceInvoiceNames.add(invoice);
+        invoice.generateCarsByPriceInvoice(carsByPrice);
+        return "{success:\"tak\"}";
+    }
+
+    private static String downloadByPriceInvoice(Request req, Response res, ArrayList<Car> cars) {
+        Gson gson = new Gson();
+        String time = req.queryParams("time");
+        System.out.println(time);
+        res.type("application/octet-stream"); //
+        res.header("Content-Disposition", "attachment; filename=invoice_all_cars_by_price_"+time+".pdf"); // nagłówek
+
+        OutputStream outputStream = null;
+        try {
+            outputStream = res.raw().getOutputStream();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            outputStream.write(Files.readAllBytes(Path.of("invoices/invoice_all_cars_by_price_"+time+".pdf"))); // response pliku do przeglądarki
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return "";
+    }
+
+    private static String downloadByYearInvoice(Request req, Response res, ArrayList<Car> cars) {
+        Gson gson = new Gson();
+        String time = req.queryParams("time");
+        System.out.println(time);
+        res.type("application/octet-stream"); //
+        res.header("Content-Disposition", "attachment; filename=invoice_all_cars_by_year_"+time+".pdf"); // nagłówek
+
+        OutputStream outputStream = null;
+        try {
+            outputStream = res.raw().getOutputStream();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        try {
+            outputStream.write(Files.readAllBytes(Path.of("invoices/invoice_all_cars_by_year_"+time+".pdf"))); // response pliku do przeglądarki
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return "";
+    }
+
+    private static Object getByYearInvoices(Request req, Response res, ArrayList<Invoice> byYearInvoicesNames) {
+        Gson gson = new Gson();
+        Type listType = new TypeToken<ArrayList<Invoice>>(){}.getType();
+        res.type("application/json");
+        return gson.toJson(byYearInvoicesNames, listType);
+    }
+
+    private static String generateCarsByYearInvoice(Request req, Response res, ArrayList<Car> cars, ArrayList<Invoice> byYearInvoicesNames) {
+        Gson gson = new Gson();
+        int year = gson.fromJson(req.body(), Car.class).getYear();
+        ArrayList<Car> carsByYear =  new ArrayList(cars.stream().filter(car-> car.getYear() == year).toList());
+        Invoice invoice = new Invoice(System.currentTimeMillis(), "faktura za rocznik "+year, "","", carsByYear, year);
+        byYearInvoicesNames.add(invoice);
+        invoice.generateCarsByYearInvoice(carsByYear);
+        return "{success:\"tak\"}";
+    }
+
+    private static String downloadAllCarsInvoice(Request req, Response res, ArrayList<Car> cars) throws IOException {
+        Gson gson = new Gson();
+        String time = req.queryParams("time");
+        System.out.println(time);
+        res.type("application/octet-stream"); //
+        res.header("Content-Disposition", "attachment; filename=invoice_all_cars_"+time+".pdf"); // nagłówek
+
+        OutputStream outputStream = null;
+        try {
+            outputStream = res.raw().getOutputStream();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        outputStream.write(Files.readAllBytes(Path.of("invoices/invoice_all_cars_"+time+".pdf"))); // response pliku do przeglądarki
+        return "";
+    }
+    private static String getAllCarsInvoices(Request req, Response res, ArrayList<Invoice> allCarsInvoicesNames) {
+        Gson gson = new Gson();
+        Type listType = new TypeToken<ArrayList<Invoice>>(){}.getType();
+        res.type("application/json");
+        return gson.toJson(allCarsInvoicesNames, listType);
+    }
+
+    private static String generateAllCarsInvoice(Request req, Response res, ArrayList<Car> cars, ArrayList<Invoice> allCarsInvoicesNames) {
+        Invoice invoice = new Invoice(System.currentTimeMillis(), "faktura za wszystkie auta", "","", cars);
+        allCarsInvoicesNames.add(invoice);
+        invoice.generateAllCarsInvoice(cars);
+        return "{success:\"tak\"}";
     }
 
     private static String downloadInvoice(Request req, Response res, ArrayList<Car> cars) throws IOException {
@@ -140,13 +254,39 @@ public class App {
     }
 }
 class Car{
+    public int getVat() {
+        return vat;
+    }
+
+    public void setVat(int vat) {
+        this.vat = vat;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public CustomDate getDate() {
+        return date;
+    }
+
+    public void setDate(CustomDate date) {
+        this.date = date;
+    }
+
     private int vat;
     private int id;
     private UUID uuid;
     private String model;
+    private int price;
     private int year;
     private String color;
     private boolean hasInvoice;
+    private CustomDate date;
     private ArrayList<Airbag> airbags;
 
     public int getId() {
@@ -241,7 +381,8 @@ class Car{
         int nextInt = random.nextInt(0xffffff + 1);
         this.color = String.format("#%06x", nextInt);
         this.year = 1970 + random.nextInt(52);
-
+        this.date = new CustomDate();
+        this.price = 10000 + random.nextInt(20000);
 
     }
     public Car(int id, String model, int year, String color, ArrayList<Airbag> airbags) {
