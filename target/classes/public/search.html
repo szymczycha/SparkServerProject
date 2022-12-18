@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>
+    sercz
+  </title>
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    table{
+      width: 100%;
+    }
+    table, td{
+      border: 1px solid black;
+    }
+    .fade{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(128,128,128,0.5);
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .fade div{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .column{
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+
+    }
+    body{
+      display: flex;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body>
+  <div class="column">
+    <a href="index.html">index</a>
+    <button id="generateCars">Generuj losowo bazę samochodów</button>
+    <button id="generateAllCarsInvoice">faktura za wszystkie auta</button>
+    <div id="allCarsInvoices" />
+  </div>
+  <select id="rocznik">
+    <option>2000</option>
+    <option>2001</option>
+    <option>2002</option>
+    <option>2003</option>
+    <option>2004</option>
+    <option>2005</option>
+    <option>2006</option>
+    <option>2007</option>
+    <option>2008</option>
+    <option>2009</option>
+    <option>2010</option>
+  </select>
+  <button id="generateYearCarsInvoice">faktura - auta z danego rocznika</button>
+  <div id="byYearInvoices">
+
+  </div>
+  <input type="text" id="minCarCost"/>
+  <input type="text" id="maxCarCost"/>
+  <button id="generatePriceCarsInvoice">faktura - auta z zakresu cen</button>
+  <div id="byPriceInvoices">
+
+  </div>
+</div>
+<table id="table">
+
+</table>
+<script>
+  let table = document.getElementById("table");
+  document.getElementById("generateCars").onclick = async function (){
+    await fetch("/generateRandom", {method:"POST"});
+    getData();
+  }
+  document.getElementById("generateAllCarsInvoice").onclick = async function(){
+    await fetch("/generateAllCarsInvoice", {method:"POST"});
+    getData();
+  }
+  document.getElementById("generateYearCarsInvoice").onclick = async function(){
+    let body = JSON.stringify({"year": document.getElementById("rocznik").value});
+    await fetch("/generateCarsByYearInvoice", {method:"POST", body: body});
+    getData();
+  }
+  document.getElementById("generatePriceCarsInvoice").onclick = async function(){
+    let body = JSON.stringify({"min": document.getElementById("minCarCost").value, "max": document.getElementById("maxCarCost").value});
+    await fetch("/generateCarsByPriceInvoice", {method:"POST", body: body});
+    getData();
+  }
+  getData = async () => {
+    table.innerHTML = "";
+    let response = await fetch("/json");
+    if (!response.ok)
+      console.log(response.status);
+    let cars = await response.json();
+    cars.forEach(car=>{
+      let row = document.createElement("tr")
+      let idCell = document.createElement("td")
+      idCell.innerText = car.id;
+      row.append(idCell)
+      let uuidCell = document.createElement("td")
+      uuidCell.innerText = car.uuid;
+      row.append(uuidCell)
+      let modelCell = document.createElement("td")
+      modelCell.innerText = car.model;
+      row.append(modelCell)
+      let yearCell = document.createElement("td")
+      yearCell.innerText = car.year;
+      row.append(yearCell)
+      let airbagsCell = document.createElement("td")
+      // airbagsCell.innerText = car.airbags.map((item, i) => i==0 ? +item.description +": "+ item.value : "\n"+item.description +": "+ item.value);
+      airbagsCell.innerText = car.airbags.map(item => "\n"+item.description +": "+ item.value);
+      row.append(airbagsCell)
+      let colorCell = document.createElement("td")
+      colorCell.style.backgroundColor = car.color;
+      colorCell.style.width = "100px";
+      row.append(colorCell)
+      // let deleteCell = document.createElement("td")
+      // let generateInvoiceButton = document.createElement("button");
+      // generateInvoiceButton.innerText = "generuj fakturę VAT";
+      // generateInvoiceButton.onclick = async function(){
+      //   console.log(car.uuid);
+      //   console.log(car);
+      //   await fetch("/generateInvoice", {method:"POST", body:JSON.stringify({
+      //       id: car.id,
+      //       uuid: car.uuid,
+      //       model: car.model,
+      //       year: car.year,
+      //       airbags: car.airbags
+      //     })})
+      //   getData();
+      // }
+      // deleteCell.append(generateInvoiceButton)
+      // row.append(deleteCell)
+      // let updateCell = document.createElement("td")
+      // if(car.hasInvoice){
+      //   let downloadInvoiceLink = document.createElement("a");
+      //   downloadInvoiceLink.innerText = "pobierz";
+      //   // downloadInvoiceLink.onclick = async function(){
+      //   //     await fetch("/downloadInvoice?" + new URLSearchParams({uuid: car.uuid})).then((data) => {
+      //   //         console.log(data);
+      //   //     });
+      //   // }
+      //   downloadInvoiceLink.href = "/downloadInvoice?uuid="+car.uuid
+      //   updateCell.append(downloadInvoiceLink)
+      // }
+      // row.append(updateCell)
+
+      let photoCell = document.createElement("td")
+      let photo = document.createElement("img")
+      photo.src = "presetcarphotos/"+car.model+".jpg"
+      photo.style.width = "100px"
+      photo.style.height = "100px"
+      photoCell.append(photo)
+      photoCell.style.width = "100px";
+      row.append(photoCell)
+
+      let dateCell = document.createElement("td")
+      dateCell.innerText = car.date.year+"/"+car.date.month+"/"+car.date.day
+      row.append(dateCell)
+
+      let priceCell = document.createElement("td")
+      priceCell.innerText = car.price
+      row.append(priceCell)
+
+      let vatCell = document.createElement("td")
+      vatCell.innerText = car.vat
+      row.append(vatCell)
+      table.append(row);
+    })
+    let getAllCarsInvoicesResponse = await fetch("/getAllCarsInvoices", {"method": "POST"});
+    if (!getAllCarsInvoicesResponse.ok)
+      console.log(getAllCarsInvoicesResponse.status);
+    let AllCarsInvoices = await getAllCarsInvoicesResponse.json();
+    let allCarsInvoicesDiv = document.getElementById("allCarsInvoices")
+    allCarsInvoicesDiv.innerHTML = "";
+    AllCarsInvoices.forEach(invoice => {
+      let a = document.createElement("a");
+      a.innerText = "pobierz";
+      a.href = "/downloadAllCarsInvoice?time="+invoice.time;
+      let date = new Date(invoice.time);
+      date.getUTCDay();
+      let year = date.getFullYear();
+      let month = date.getMonth()+1;
+      let day = date.getDate();
+      let hours = date.getHours();
+      let minutes = date.getMinutes();
+      let seconds = date.getSeconds();
+      a.title = "faktura za wszystkie auta -> "+year+"/"+month+"/"+day+" "+hours+":"+minutes+":"+seconds
+      allCarsInvoicesDiv.append(a)
+    })
+
+    //
+    let getByYearInvoicesResponse = await fetch("/getCarsByYearInvoices", {"method": "POST"});
+    if (!getByYearInvoicesResponse.ok){
+      console.log("bad")
+    }
+    let byYearInvoices = await getByYearInvoicesResponse.json();
+    console.log(byYearInvoices);
+    let byYearInvoicesDiv = document.getElementById("byYearInvoices")
+    byYearInvoicesDiv.innerHTML = "";
+    byYearInvoices.forEach(invoice => {
+      let a = document.createElement("a");
+      a.innerText = "pobierz";
+      a.href = "/downloadByYearInvoice?time="+invoice.time;
+      let date = new Date(invoice.time);
+      console.log(date);
+      date.getUTCDay();
+      let year = date.getFullYear();
+      let month = date.getMonth()+1;
+      let day = date.getDate();
+      let hours = date.getHours();
+      let minutes = date.getMinutes();
+      let seconds = date.getSeconds();
+      a.title = invoice.title +" -> "+year+"/"+month+"/"+day+" "+hours+":"+minutes+":"+seconds
+      byYearInvoicesDiv.append(a)
+    })
+
+    let getByPriceInvoicesResponse = await fetch("/getCarsByPriceInvoices", {"method": "POST"});
+    if (!getByPriceInvoicesResponse.ok){
+      console.log("bad")
+    }
+    let byPriceInvoices = await getByPriceInvoicesResponse.json();
+    console.log(byPriceInvoices);
+    let byPriceInvoicesDiv = document.getElementById("byPriceInvoices")
+    byPriceInvoicesDiv.innerHTML = "";
+    byPriceInvoices.forEach(invoice => {
+      let a = document.createElement("a");
+      a.innerText = "pobierz";
+      a.href = "/downloadByPriceInvoice?time="+invoice.time;
+      let date = new Date(invoice.time);
+      console.log(date);
+      date.getUTCDay();
+      let year = date.getFullYear();
+      let month = date.getMonth()+1;
+      let day = date.getDate();
+      let hours = date.getHours();
+      let minutes = date.getMinutes();
+      let seconds = date.getSeconds();
+      a.title = invoice.title +" -> "+year+"/"+month+"/"+day+" "+hours+":"+minutes+":"+seconds
+      byPriceInvoicesDiv.append(a)
+    })
+  }
+  getData();
+</script>
+</body>
+</html>
