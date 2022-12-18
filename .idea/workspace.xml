@@ -4,14 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e7b26de-9783-4600-a8f8-69fe33465bfa" name="Changes" comment="Pdfy czy cos jezus">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/public/gallery.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/public/upload.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/admin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/cars.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/cars.html" afterDir="false" />
-    </list>
+    <list default="true" id="8e7b26de-9783-4600-a8f8-69fe33465bfa" name="Changes" comment="essa jestem na biezaco przez nastepne 16 godzin" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -86,7 +79,7 @@
       <workItem from="1670832890854" duration="2382000" />
       <workItem from="1671207730825" duration="16095000" />
       <workItem from="1671272874358" duration="1434000" />
-      <workItem from="1671364645009" duration="9735000" />
+      <workItem from="1671364645009" duration="10400000" />
     </task>
     <task id="LOCAL-00001" summary="Lekcja01">
       <created>1665388551058</created>
@@ -116,7 +109,21 @@
       <option name="project" value="LOCAL" />
       <updated>1671224029044</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="essa jestem na biezaco przez nastepne 16 godzin">
+      <created>1671375546463</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1671375546463</updated>
+    </task>
+    <task id="LOCAL-00006" summary="essa jestem na biezaco przez nastepne 16 godzin">
+      <created>1671377638458</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1671377638458</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -138,6 +145,7 @@
     <MESSAGE value="L02?" />
     <MESSAGE value="L03?" />
     <MESSAGE value="Pdfy czy cos jezus" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pdfy czy cos jezus" />
+    <MESSAGE value="essa jestem na biezaco przez nastepne 16 godzin" />
+    <option name="LAST_COMMIT_MESSAGE" value="essa jestem na biezaco przez nastepne 16 godzin" />
   </component>
 </project>
