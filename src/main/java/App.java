@@ -1,12 +1,11 @@
 import static spark.Spark.*;
 
-import java.io.IOException;
-import java.io.OutputStream;
+import java.io.*;
+import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
-import java.util.List;
 
 import static spark.Spark.externalStaticFileLocation;
 
@@ -16,11 +15,16 @@ import com.google.gson.reflect.TypeToken;
 import spark.Request;
 import spark.Response;
 
+import javax.servlet.MultipartConfigElement;
+import javax.servlet.ServletException;
+import javax.servlet.http.Part;
+
 public class App {
     public static void main(String[] args) {
         ArrayList<Invoice> allCarsInvoicesNames = new ArrayList<>();
         ArrayList<Invoice> byYearInvoicesNames = new ArrayList<>();
         ArrayList<Invoice> byPriceInvoiceNames = new ArrayList<>();
+        ArrayList<String> imageNames = new ArrayList<>();
 
         ArrayList<Car> cars = new ArrayList<>();
 //        externalStaticFileLocation("C:\\Users\\4pa\\Desktop\\Test\\src\\main\\resources\\public");
@@ -41,6 +45,100 @@ public class App {
         get("/downloadAllCarsInvoice", (req,res) -> downloadAllCarsInvoice(req,res,cars));
         get("/downloadByYearInvoice", (req,res) -> downloadByYearInvoice(req,res,cars));
         get("/downloadByPriceInvoice", (req,res) -> downloadByPriceInvoice(req,res,cars));
+        post("/upload", (req,res) -> upload(req,res,imageNames));
+        get("/getThumbnail", (req,res) -> getThumbnail(req,res,imageNames));
+        post("/saveGalleryImages", (req,res) -> saveGalleryImages(req,res,cars));
+        post("/getCarImages", (req,res) -> getCarImages(req,res,cars));
+    }
+
+    private static String getCarImages(Request req, Response res, ArrayList<Car> cars) {
+        Gson gson = new Gson();
+        UUID uuid = gson.fromJson(req.body(), Car.class).getUuid();
+        System.out.println(uuid);
+        ArrayList<String> imagesToSend = null;
+        for (Car car :
+                cars) {
+            System.out.println(uuid);
+            if(uuid.equals(car.getUuid())){
+                imagesToSend = car.getImagesNames();
+                break;
+            }
+        }
+        System.out.println(imagesToSend);
+        Type listType = new TypeToken<ArrayList<String>>(){}.getType();
+        res.type("application/json");
+        return gson.toJson(imagesToSend, listType);
+    }
+
+    private static String saveGalleryImages(Request req, Response res, ArrayList<Car> cars) {
+        Gson gson = new Gson();
+        UUID uuid = gson.fromJson(req.body(), Car.class).getUuid();
+        ArrayList<String> imagesNames = gson.fromJson(req.body(), Car.class).getImagesNames();
+        for (Car car :
+                cars) {
+            if(uuid.equals(car.getUuid())){
+
+                for (String image : imagesNames) {
+                    car.addImage(image);
+                }
+                break;
+            }
+        }
+        return "{'status':'ok'}";
+    }
+
+
+    private static String getThumbnail(Request req, Response res, ArrayList<String> imageNames) {
+        String imageName = req.queryParams("name");
+        System.out.println(imageName);
+        String path = "images/"+imageName;
+        File file = new File(path);
+        res.type("image/jpeg");
+
+        OutputStream outputStream = null;
+        try {
+            outputStream = res.raw().getOutputStream();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            outputStream.write(Files.readAllBytes(file.toPath()));
+            outputStream.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
+    private static String upload(Request req, Response res, ArrayList<String> imageNames) {
+        ArrayList<String> sentImagesNames = new ArrayList<>();
+        try {
+            req.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/images"));
+            for(Part p : req.raw().getParts()){
+                System.out.println(p);
+                System.out.println(p.getInputStream());
+                InputStream inputStream = p.getInputStream();
+                // inputstream to byte
+                byte[] bytes = inputStream.readAllBytes();
+                UUID uuid = Generators.randomBasedGenerator().generate();
+                String fileName = uuid.toString()+".jpg";
+                sentImagesNames.add(fileName);
+                FileOutputStream fos = new FileOutputStream("images/" + fileName);
+                fos.write(bytes);
+                fos.close();
+                // dodaj do Arraylist z nazwami aut do odesłania do przeglądarki
+                imageNames.add(fileName);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (ServletException e) {
+            throw new RuntimeException(e);
+        }
+        Gson gson = new Gson();
+        Type listType = new TypeToken<ArrayList<String>>(){}.getType();
+        res.type("application/json");
+        return gson.toJson(sentImagesNames, listType);
     }
 
     private static String getCarsByPriceInvoices(Request req, Response res, ArrayList<Invoice> byPriceInvoiceNames) {
@@ -289,6 +387,15 @@ class Car{
     private CustomDate date;
     private ArrayList<Airbag> airbags;
 
+    public ArrayList<String> getImagesNames() {
+        return imagesNames;
+    }
+
+    private ArrayList<String> imagesNames;
+    public void addImage(String imageName){
+        imagesNames.add(imageName);
+    }
+
     public int getId() {
         return id;
     }
@@ -383,7 +490,7 @@ class Car{
         this.year = 1970 + random.nextInt(52);
         this.date = new CustomDate();
         this.price = 10000 + random.nextInt(20000);
-
+        this.imagesNames = new ArrayList<>();
     }
     public Car(int id, String model, int year, String color, ArrayList<Airbag> airbags) {
         double vatRoll = Math.random();
@@ -402,6 +509,7 @@ class Car{
         this.color = color;
         this.airbags = airbags;
         this.hasInvoice = false;
+        this.imagesNames = new ArrayList<>();
     }
 
     public Car() {

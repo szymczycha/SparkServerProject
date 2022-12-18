@@ -44,6 +44,7 @@
         </div>
     </div>
     <a href="index.html">index</a>
+    <a href="admin.html">admin</a>
     <table id="table">
 
     </table>
@@ -112,6 +113,25 @@
                 updateCell.append(updateButton)
                 row.append(updateCell)
 
+                let uploaderCell = document.createElement("td")
+                let uploaderLink = document.createElement("a")
+                uploaderLink.href = "/upload.html";
+                uploaderLink.innerText = "uploader"
+                uploaderLink.onclick = () => {
+                    window.sessionStorage.setItem("uploadCarUUID", car.uuid);
+                }
+                uploaderCell.append(uploaderLink)
+                row.append(uploaderCell)
+
+                let galleryCell = document.createElement("td")
+                let galleryLink = document.createElement("a")
+                galleryLink.href = "/gallery.html";
+                galleryLink.innerText = "gallery"
+                galleryLink.onclick = () => {
+                    window.sessionStorage.setItem("chosenCarUUID", car.uuid);
+                }
+                galleryCell.append(galleryLink)
+                row.append(galleryCell)
 
                 table.append(row);
             })

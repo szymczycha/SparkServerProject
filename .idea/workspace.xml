@@ -4,16 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e7b26de-9783-4600-a8f8-69fe33465bfa" name="Changes" comment="L03?">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_itextpdf_itextpdf_5_5_10.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/public/search.html" afterDir="false" />
+    <list default="true" id="8e7b26de-9783-4600-a8f8-69fe33465bfa" name="Changes" comment="Pdfy czy cos jezus">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/public/gallery.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/public/upload.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/CustomDate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/CustomDate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Helpers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Helpers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Invoice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Invoice.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/public/admin.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/admin.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/public/cars.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/cars.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,16 +39,16 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/szymc/OneDrive/Pulpit/SparkServerProject"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/szymc/OneDrive/Pulpit/SparkServerProject&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Application.App">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="App" />
@@ -87,7 +84,9 @@
       <workItem from="1666592923505" duration="17000" />
       <workItem from="1670226252096" duration="4207000" />
       <workItem from="1670832890854" duration="2382000" />
-      <workItem from="1671207730825" duration="15854000" />
+      <workItem from="1671207730825" duration="16095000" />
+      <workItem from="1671272874358" duration="1434000" />
+      <workItem from="1671364645009" duration="9735000" />
     </task>
     <task id="LOCAL-00001" summary="Lekcja01">
       <created>1665388551058</created>
@@ -110,7 +109,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670230573211</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Pdfy czy cos jezus">
+      <created>1671224029044</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1671224029044</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -131,6 +137,7 @@
     <MESSAGE value="Lekcja01" />
     <MESSAGE value="L02?" />
     <MESSAGE value="L03?" />
-    <option name="LAST_COMMIT_MESSAGE" value="L03?" />
+    <MESSAGE value="Pdfy czy cos jezus" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pdfy czy cos jezus" />
   </component>
 </project>
