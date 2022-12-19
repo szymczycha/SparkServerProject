@@ -1,6 +1,33 @@
 import java.awt.*;
 
 public class Helpers {
+    private int width;
+    private int height;
+    private int x;
+    private int y;
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
     public static Color hexToColor(String input){
         Character[] characters = new Character[]{'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'};
         int red = 0;

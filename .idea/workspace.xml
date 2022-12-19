@@ -4,7 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e7b26de-9783-4600-a8f8-69fe33465bfa" name="Changes" comment="essa jestem na biezaco przez nastepne 16 godzin" />
+    <list default="true" id="8e7b26de-9783-4600-a8f8-69fe33465bfa" name="Changes" comment="essa jestem na biezaco przez nastepne 16 godzin">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_imgscalr_imgscalr_lib_4_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Imaging.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/public/imager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Test.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Helpers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Helpers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/public/gallery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/gallery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Airbag.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Airbag.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/App$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/App$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/App$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/App$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/App$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/App$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/App$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Car.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Car.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Helpers.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Helpers.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/public/gallery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/public/gallery.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,6 +41,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="szkola" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -59,8 +86,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.App" />
-        <item itemvalue="JavaScript Debug.cars.html" />
         <item itemvalue="JavaScript Debug.index.html" />
+        <item itemvalue="JavaScript Debug.cars.html" />
+        <item itemvalue="Application.App" />
+        <item itemvalue="JavaScript Debug.cars.html" />
       </list>
     </recent_temporary>
   </component>

@@ -1,5 +1,6 @@
 import static spark.Spark.*;
 
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.lang.reflect.Array;
 import java.lang.reflect.Type;
@@ -15,6 +16,7 @@ import com.google.gson.reflect.TypeToken;
 import spark.Request;
 import spark.Response;
 
+import javax.imageio.ImageIO;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletException;
 import javax.servlet.http.Part;
@@ -27,8 +29,8 @@ public class App {
         ArrayList<String> imageNames = new ArrayList<>();
 
         ArrayList<Car> cars = new ArrayList<>();
-//        externalStaticFileLocation("C:\\Users\\4pa\\Desktop\\Test\\src\\main\\resources\\public");
-        externalStaticFileLocation("C:\\Users\\szymc\\OneDrive\\Pulpit\\SparkServerProject\\src\\main\\resources\\public");
+        externalStaticFileLocation("C:\\Users\\4pa\\Desktop\\Test\\src\\main\\resources\\public");
+//        externalStaticFileLocation("C:\\Users\\szymc\\OneDrive\\Pulpit\\SparkServerProject\\src\\main\\resources\\public");
         post("/add", (req,res) -> add(req,res,cars));
         get("/json", (req,res) -> jsonCars(req,res,cars));
         post("/delete", (req,res) -> deleteCar(req,res,cars));
@@ -49,6 +51,87 @@ public class App {
         get("/getThumbnail", (req,res) -> getThumbnail(req,res,imageNames));
         post("/saveGalleryImages", (req,res) -> saveGalleryImages(req,res,cars));
         post("/getCarImages", (req,res) -> getCarImages(req,res,cars));
+        get("/getImage", (req,res) -> getImage(req,res));
+        post("/getImageParams", (req,res) -> getImageParams(req,res));
+        post("/rotateImage", (req,res) -> rotateImage(req,res));
+        post("/flipHorizontalImage", (req,res) -> flipHorizontalImage(req,res));
+        post("/flipVerticalImage", (req,res) -> flipVerticalImage(req,res));
+        post("/cropImage", (req,res) -> cropImage(req,res));
+    }
+
+    private static String cropImage(Request req, Response res) {
+        Gson gson = new Gson();
+        String path = "images/"+gson.fromJson(req.body(), Helpers.class).getName();
+        int witdh = gson.fromJson(req.body(), Helpers.class).getWidth();
+        int height = gson.fromJson(req.body(), Helpers.class).getHeight();
+        int x = gson.fromJson(req.body(), Helpers.class).getX();
+        int y = gson.fromJson(req.body(), Helpers.class).getY();
+        Imaging.cropImage(path, witdh, height, x, y);
+        return "{'status': 'success'}";
+    }
+
+    private static String flipVerticalImage(Request req, Response res) {
+        Gson gson = new Gson();
+        String path = "images/"+gson.fromJson(req.body(), Helpers.class).getName();
+        Imaging.flipVerticalImage(path);
+        return "{'status': 'success'}";
+    }
+    private static String flipHorizontalImage(Request req, Response res) {
+        Gson gson = new Gson();
+        String path = "images/"+gson.fromJson(req.body(), Helpers.class).getName();
+        Imaging.flipHorizontalImage(path);
+        return "{'status': 'success'}";
+    }
+
+    private static String rotateImage(Request req, Response res) {
+        Gson gson = new Gson();
+        String path = "images/"+gson.fromJson(req.body(), Helpers.class).getName();
+        Imaging.rotateImage(path);
+        return "{'status': 'success'}";
+    }
+
+    private static String getImageParams(Request req, Response res) {
+        Gson gson = new Gson();
+        String imageName = gson.fromJson(req.body(), Helpers.class).getName();
+        String filePath = "images/"+imageName;
+        System.out.println(filePath);
+        File sourceFile = new File(filePath);
+        BufferedImage originalImage = null;
+        try {
+            originalImage = ImageIO.read(sourceFile);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println(originalImage.getWidth());
+        System.out.println(originalImage.getHeight());
+
+        return "{\"width\":"+originalImage.getWidth()+", \"height\": "+originalImage.getHeight()+"}";
+    }
+
+    private static String getImage(Request req, Response res) {
+        String imageName = req.queryParams("name");
+        System.out.println("/getImage");
+        System.out.println(imageName);
+        String path = "images/"+imageName;
+        System.out.println(path);
+        File file = new File(path);
+        res.type("image/jpeg");
+
+        OutputStream outputStream = null;
+        try {
+            outputStream = res.raw().getOutputStream();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        try {
+            outputStream.write(Files.readAllBytes(file.toPath()));
+            outputStream.flush();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
     }
 
     private static String getCarImages(Request req, Response res, ArrayList<Car> cars) {
