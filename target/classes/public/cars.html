@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        table, td{
+            border: 1px solid black;
+        }
+        .fade{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(128,128,128,0.5);
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .fade div{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="fade" id="fade">
+        <div method="post" action="/update">
+            <input type="hidden" name="uuid" id="uuid"/>
+            <input type="text" name="modelName" id="model"/>
+            <select name="year" id="year">
+                <option value="2001">2001</option>
+                <option value="2002">2002</option>
+                <option value="2003">2003</option>
+                <option value="2004">2004</option>
+            </select>
+            <button id="submit">OK</button>
+        </div>
+    </div>
+    <a href="index.html">index</a>
+    <table id="table">
+
+    </table>
+    <script>
+        let table = document.getElementById("table");
+        document.getElementById("submit").onclick = async function(){
+            document.getElementById("fade").style.display = "none";
+            console.log()
+            console.log(await fetch("/update", {method:"POST", body: JSON.stringify({
+                        uuid: document.getElementById("uuid").value,
+                        model: document.getElementById("model").value,
+                        year: document.getElementById("year").value,
+                })}))
+            await getData();
+        }
+        getData = async () => {
+            table.innerHTML = "";
+            let response = await fetch("/json");
+            console.log(response)
+            if (!response.ok)
+                console.log(response.status);
+            let cars = await response.json();
+            console.log(response.status);
+            console.log(cars);
+            cars.forEach(car=>{
+                let row = document.createElement("tr")
+                let idCell = document.createElement("td")
+                idCell.innerText = car.id;
+                row.append(idCell)
+                let uuidCell = document.createElement("td")
+                uuidCell.innerText = car.uuid;
+                row.append(uuidCell)
+                let modelCell = document.createElement("td")
+                modelCell.innerText = car.model;
+                row.append(modelCell)
+                let yearCell = document.createElement("td")
+                yearCell.innerText = car.year;
+                row.append(yearCell)
+                let airbagsCell = document.createElement("td")
+                // airbagsCell.innerText = car.airbags.map((item, i) => i==0 ? +item.description +": "+ item.value : "\n"+item.description +": "+ item.value);
+                airbagsCell.innerText = car.airbags.map(item => "\n"+item.description +": "+ item.value);
+                row.append(airbagsCell)
+                let colorCell = document.createElement("td")
+                colorCell.style.backgroundColor = car.color;
+                colorCell.style.width = "100px";
+                row.append(colorCell)
+                let deleteCell = document.createElement("td")
+                let deleteButton = document.createElement("button")
+                deleteButton.innerText = "delete car"
+                deleteButton.onclick = async function () {
+                    console.log(await fetch("/delete", {method: "POST",body: JSON.stringify({"uuid": car.uuid})}));
+                    getData();
+                }
+                deleteCell.append(deleteButton)
+                row.append(deleteCell)
+                let updateCell = document.createElement("td")
+                let updateButton = document.createElement("button")
+                updateButton.innerText = "update car"
+                updateButton.onclick = function () {
+                    document.getElementById("fade").style.display = "flex";
+                    document.getElementById("uuid").value = car.uuid;
+                    document.getElementById("model").value = car.model;
+                    document.getElementById("year").value = car.year;
+
+                }
+                updateCell.append(updateButton)
+                row.append(updateCell)
+
+
+                table.append(row);
+            })
+        }
+        getData();
+    </script>
+</body>
+</html>
