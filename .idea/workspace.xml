@@ -4,28 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e7b26de-9783-4600-a8f8-69fe33465bfa" name="Changes" comment="essa jestem na biezaco przez nastepne 16 godzin">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_imgscalr_imgscalr_lib_4_2.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Imaging.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/public/imager.html" afterDir="false" />
+    <list default="true" id="8e7b26de-9783-4600-a8f8-69fe33465bfa" name="Changes" comment="crop zostal">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Test.iml" beforeDir="false" afterPath="$PROJECT_DIR$/Test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Helpers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Helpers.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/gallery.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/gallery.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Airbag.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Airbag.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/App$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/App$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/App$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/App$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/App$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/App$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/App$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Car.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Car.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Helpers.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Helpers.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/gallery.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/public/gallery.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/public/imager.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/imager.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,6 +90,7 @@
       <workItem from="1671207730825" duration="16095000" />
       <workItem from="1671272874358" duration="1434000" />
       <workItem from="1671364645009" duration="10400000" />
+      <workItem from="1671624608528" duration="2651000" />
     </task>
     <task id="LOCAL-00001" summary="Lekcja01">
       <created>1665388551058</created>
@@ -152,7 +134,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671377638458</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="crop zostal">
+      <created>1671440066203</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1671440066203</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -175,6 +164,7 @@
     <MESSAGE value="L03?" />
     <MESSAGE value="Pdfy czy cos jezus" />
     <MESSAGE value="essa jestem na biezaco przez nastepne 16 godzin" />
-    <option name="LAST_COMMIT_MESSAGE" value="essa jestem na biezaco przez nastepne 16 godzin" />
+    <MESSAGE value="crop zostal" />
+    <option name="LAST_COMMIT_MESSAGE" value="crop zostal" />
   </component>
 </project>
