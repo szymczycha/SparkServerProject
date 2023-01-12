@@ -4,9 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e7b26de-9783-4600-a8f8-69fe33465bfa" name="Changes" comment="crop zostal">
+    <list default="true" id="8e7b26de-9783-4600-a8f8-69fe33465bfa" name="Changes" comment="no crop dziala ale tak smiesznie">
+      <change afterPath="$PROJECT_DIR$/src/main/java/AppREST.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/PhotoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/controller/PhotoServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/model/Photo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/response/ResponseEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/response/ResponseStatus.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/imager.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/imager.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/public/imager.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/public/imager.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +22,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -40,17 +48,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/szymc/OneDrive/Pulpit/SparkServerProject&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/4pa/Desktop/Test"
   }
-}</component>
-  <component name="RunManager" selected="Application.App">
+}]]></component>
+  <component name="RunManager" selected="HTTP Request.rest-api_1 | #3">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="App" />
       <module name="Test" />
@@ -58,19 +66,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="cars.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Test/public/cars.html" useBuiltInWebServerPort="true">
+    <configuration name="AppREST" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="AppREST" />
+      <module name="Test" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="rest-api_1 | #1" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api_1.http" requestIdentifier="#1" runType="Run single request">
       <method v="2" />
     </configuration>
-    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/Test/public/index.html" useBuiltInWebServerPort="true">
+    <configuration name="rest-api_1 | #2" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api_1.http" index="2" requestIdentifier="#2" runType="Run single request">
+      <method v="2" />
+    </configuration>
+    <configuration name="rest-api_1 | #3" type="HttpClient.HttpRequestRunConfigurationType" factoryName="HTTP Request" temporary="true" nameIsGenerated="true" path="$APPLICATION_CONFIG_DIR$/scratches/rest-api_1.http" index="3" requestIdentifier="#3" runType="Run single request">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="HTTP Request.rest-api_1 | #3" />
+        <item itemvalue="Application.AppREST" />
+        <item itemvalue="HTTP Request.rest-api_1 | #2" />
+        <item itemvalue="HTTP Request.rest-api_1 | #1" />
         <item itemvalue="Application.App" />
-        <item itemvalue="JavaScript Debug.index.html" />
-        <item itemvalue="JavaScript Debug.cars.html" />
-        <item itemvalue="Application.App" />
-        <item itemvalue="JavaScript Debug.cars.html" />
       </list>
     </recent_temporary>
   </component>
@@ -90,7 +108,9 @@
       <workItem from="1671207730825" duration="16095000" />
       <workItem from="1671272874358" duration="1434000" />
       <workItem from="1671364645009" duration="10400000" />
-      <workItem from="1671624608528" duration="2651000" />
+      <workItem from="1671624608528" duration="3025000" />
+      <workItem from="1672921066610" duration="39000" />
+      <workItem from="1673525884650" duration="4410000" />
     </task>
     <task id="LOCAL-00001" summary="Lekcja01">
       <created>1665388551058</created>
@@ -141,7 +161,21 @@
       <option name="project" value="LOCAL" />
       <updated>1671440066203</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="no crop dziala ale tak smiesznie">
+      <created>1671627312433</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1671627312433</updated>
+    </task>
+    <task id="LOCAL-00009" summary="no crop dziala ale tak smiesznie">
+      <created>1671627641620</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1671627641620</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -165,6 +199,7 @@
     <MESSAGE value="Pdfy czy cos jezus" />
     <MESSAGE value="essa jestem na biezaco przez nastepne 16 godzin" />
     <MESSAGE value="crop zostal" />
-    <option name="LAST_COMMIT_MESSAGE" value="crop zostal" />
+    <MESSAGE value="no crop dziala ale tak smiesznie" />
+    <option name="LAST_COMMIT_MESSAGE" value="no crop dziala ale tak smiesznie" />
   </component>
 </project>
