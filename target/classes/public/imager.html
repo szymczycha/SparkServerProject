@@ -188,12 +188,13 @@
             .then(d => {
                 let data = JSON.parse(d);
                 console.log(data);
-                console.log(data.height)
-                imageDiv.style.height = 500 + "px"
-                scale = 500/data.height
-                imageDiv.style.width = data.width*scale + "px"
-                imageDiv.style.backgroundImage = `url("/getImage?name=${imageName}&rand=${Math.random()}")`
-                console.log("SCALE: ", scale)
+                console.log(data.height);
+                imageDiv.style.height = 500 + "px";
+                scale = 500/data.height;
+                imageDiv.style.width = data.width*scale + "px";
+                imageDiv.style.backgroundImage = `url("/getImage?name=${imageName}&rand=${Math.random()}")`;
+                console.log(`/getImage?name=${imageName}&rand=${Math.random()}`)
+                console.log("SCALE: ", scale);
             })
         // div.innerHTML = imageName;
     }

@@ -159,7 +159,9 @@
 
       let photoCell = document.createElement("td")
       let photo = document.createElement("img")
-      photo.src = "presetcarphotos/"+car.model+".jpg"
+      if(car.model == "BMW" || car.model == "Fiat" || car.model == "Audi"){
+        photo.src = "presetcarphotos/"+car.model+".jpg"
+      }
       photo.style.width = "100px"
       photo.style.height = "100px"
       photoCell.append(photo)
@@ -167,7 +169,11 @@
       row.append(photoCell)
 
       let dateCell = document.createElement("td")
-      dateCell.innerText = car.date.year+"/"+car.date.month+"/"+car.date.day
+      try{
+        dateCell.innerText = car.date.year+"/"+car.date.month+"/"+car.date.day
+      }catch{
+        console.log(car)
+      }
       row.append(dateCell)
 
       let priceCell = document.createElement("td")

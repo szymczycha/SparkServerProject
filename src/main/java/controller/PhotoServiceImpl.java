@@ -76,9 +76,10 @@ public class PhotoServiceImpl implements PhotoService{
     }
 
     @Override
-    public OutputStream getPhotoStream(Response res, String id) {
+    public OutputStream getPhotoStream() {
         return null;
     }
+
 
     @Override
     public boolean renamePhotoById(String id, String newName) {

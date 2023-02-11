@@ -52,6 +52,7 @@ public class Imaging {
     }
     public static void rotateImage(String path){
         File sourceFile = new File(path);
+        System.out.println(sourceFile.getTotalSpace());
         BufferedImage originalImage = null;
         try {
             originalImage = ImageIO.read(sourceFile);
@@ -70,6 +71,7 @@ public class Imaging {
 
         originalImage.flush();
         targetImage.flush();
+        System.out.println("rotated");
     }
     public static void cropImage(String path, int width, int height, int x, int y){
         File sourceFile = new File(path);

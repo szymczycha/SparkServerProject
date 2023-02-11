@@ -29,8 +29,10 @@ public class App {
         ArrayList<String> imageNames = new ArrayList<>();
 
         ArrayList<Car> cars = new ArrayList<>();
-        externalStaticFileLocation("C:\\Users\\4pa\\Desktop\\Test\\src\\main\\resources\\public");
-//        externalStaticFileLocation("C:\\Users\\szymc\\OneDrive\\Pulpit\\SparkServerProject\\src\\main\\resources\\public");
+//        externalStaticFileLocation("C:\\Users\\4pa\\Desktop\\Test\\src\\main\\resources\\public");
+        externalStaticFileLocation(System.getProperty("user.dir")+"\\src\\main\\resources\\public");
+        get("/getImage", (req,res) -> getImage(req,res));
+        get("/getThumbnail", (req,res) -> getThumbnail(req,res,imageNames));
         post("/add", (req,res) -> add(req,res,cars));
         get("/json", (req,res) -> jsonCars(req,res,cars));
         post("/delete", (req,res) -> deleteCar(req,res,cars));
@@ -48,10 +50,8 @@ public class App {
         get("/downloadByYearInvoice", (req,res) -> downloadByYearInvoice(req,res,cars));
         get("/downloadByPriceInvoice", (req,res) -> downloadByPriceInvoice(req,res,cars));
         post("/upload", (req,res) -> upload(req,res,imageNames));
-        get("/getThumbnail", (req,res) -> getThumbnail(req,res,imageNames));
         post("/saveGalleryImages", (req,res) -> saveGalleryImages(req,res,cars));
         post("/getCarImages", (req,res) -> getCarImages(req,res,cars));
-        get("/getImage", (req,res) -> getImage(req,res));
         post("/getImageParams", (req,res) -> getImageParams(req,res));
         post("/rotateImage", (req,res) -> rotateImage(req,res));
         post("/flipHorizontalImage", (req,res) -> flipHorizontalImage(req,res));
@@ -60,6 +60,7 @@ public class App {
     }
 
     private static String cropImage(Request req, Response res) {
+        System.out.println("/crop");
         Gson gson = new Gson();
         String path = "images/"+gson.fromJson(req.body(), Helpers.class).getName();
         int witdh = gson.fromJson(req.body(), Helpers.class).getWidth();
@@ -71,12 +72,14 @@ public class App {
     }
 
     private static String flipVerticalImage(Request req, Response res) {
+        System.out.println("/vertiFlip");
         Gson gson = new Gson();
         String path = "images/"+gson.fromJson(req.body(), Helpers.class).getName();
         Imaging.flipVerticalImage(path);
         return "{'status': 'success'}";
     }
     private static String flipHorizontalImage(Request req, Response res) {
+        System.out.println("/horiFlip");
         Gson gson = new Gson();
         String path = "images/"+gson.fromJson(req.body(), Helpers.class).getName();
         Imaging.flipHorizontalImage(path);
@@ -84,6 +87,7 @@ public class App {
     }
 
     private static String rotateImage(Request req, Response res) {
+        System.out.println("/rotateImage");
         Gson gson = new Gson();
         String path = "images/"+gson.fromJson(req.body(), Helpers.class).getName();
         Imaging.rotateImage(path);
@@ -131,7 +135,7 @@ public class App {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return null;
+        return "";
     }
 
     private static String getCarImages(Request req, Response res, ArrayList<Car> cars) {
@@ -191,12 +195,14 @@ public class App {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return null;
+        return "";
     }
 
     private static String upload(Request req, Response res, ArrayList<String> imageNames) {
         ArrayList<String> sentImagesNames = new ArrayList<>();
         try {
+            System.out.println(System.getProperty("user.dir"));
+            Files.createDirectories(Path.of(System.getProperty("user.dir") + "/images"));
             req.attribute("org.eclipse.jetty.multipartConfig", new MultipartConfigElement("/images"));
             for(Part p : req.raw().getParts()){
                 System.out.println(p);
@@ -592,6 +598,11 @@ class Car{
         this.color = color;
         this.airbags = airbags;
         this.hasInvoice = false;
+        this.date = new CustomDate();
+        Random random = new Random();
+        int nextInt = random.nextInt(0xffffff + 1);
+        this.color = String.format("#%06x", nextInt);
+        this.price = 10000 + random.nextInt(20000);
         this.imagesNames = new ArrayList<>();
     }
 
