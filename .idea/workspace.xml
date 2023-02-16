@@ -4,81 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8e7b26de-9783-4600-a8f8-69fe33465bfa" name="Changes" comment="gitignore update?">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_12_2022_08_35__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_19_12_2022_08_35__Changes_.xml" afterDir="false" />
+    <list default="true" id="8e7b26de-9783-4600-a8f8-69fe33465bfa" name="Changes" comment="powinien byc max">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/0017111c-783b-45f1-9711-1c783b55f16d.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/01b11252-d746-477f-b112-52d746777ff2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/02ba29e6-0a6c-4db1-ba29-e60a6c0db10e.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/048ba6c0-c3c0-4a51-8ba6-c0c3c08a5121.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/049c30d6-f1cf-4430-9c30-d6f1cf8430b1.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/05683b93-7656-4252-a83b-937656a25204.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/0bb22eb8-dd85-42a1-b22e-b8dd8512a131.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/0c7ae63e-a839-4f7d-bae6-3ea839af7d03.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1565a351-bac8-4bc8-a5a3-51bac8dbc82d.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/1b8a0e60-9265-43e6-8a0e-60926573e6e8.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/260b2c55-7804-4e38-8b2c-5578041e381f.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/2ab3749b-c1ca-4efd-b374-9bc1ca7efd3c.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/2f6c99a1-1d62-4b5b-ac99-a11d62eb5bf5.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/311e56d7-3627-4f8b-9e56-d736279f8b59.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/3223ac67-cdd8-4412-a3ac-67cdd884123d.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/35b2fefa-e1e0-48d0-b2fe-fae1e0c8d019.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/3d91a056-fe07-42b9-91a0-56fe07a2b9cf.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/4b4ce463-146e-46a6-8ce4-63146e86a6d9.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/4fe3a5fd-ceab-4a11-a3a5-fdceabca11ad.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/513efa05-ea30-476a-befa-05ea30c76aca.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/51e41963-6cbe-45bb-a419-636cbe05bb48.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/6a9a6bcd-2ac3-4ae9-9a6b-cd2ac3dae958.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/76546c60-f8b5-41f2-946c-60f8b5d1f262.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/87aa0185-f941-4c8e-aa01-85f9415c8e69.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/8c72f237-12e3-42b1-b2f2-3712e322b1c4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/8e9dd555-00fc-42bd-9dd5-5500fc92bd49.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/97aaddc3-1f07-4a60-aadd-c31f07fa6089.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/98bf339f-b51a-44e9-bf33-9fb51ae4e9a9.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/99036e3f-2d6e-48f0-836e-3f2d6e88f038.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/a13fc3c1-19ed-44b5-bfc3-c119ed14b5da.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/a47eefe5-9424-402f-beef-e59424b02f66.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/a564c1aa-fe8a-4d52-a4c1-aafe8a3d52d3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/a664b184-abb5-478c-a4b1-84abb5c78c32.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/abad41fd-3494-4367-ad41-fd3494c36756.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/abb63c51-ef35-4a1f-b63c-51ef359a1f61.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/b0a2c789-2547-4b08-a2c7-8925473b085b.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/b0ab8850-52db-431d-ab88-5052db231de9.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/b206f465-7e0c-4224-86f4-657e0c6224ec.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/b28041af-200a-41f5-8041-af200a91f5ce.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/c1e81dd9-b376-4a90-a81d-d9b376ca902d.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/cace6ba2-9e24-4a70-8e6b-a29e243a7004.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/ccd32246-bfa7-474f-9322-46bfa7e74fae.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/d3b25a59-a582-47e9-b25a-59a58247e9ca.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/d502a14c-1c4b-4d32-82a1-4c1c4bed32a8.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/e15c6609-4bda-407d-9c66-094bdaa07df9.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/f1986afd-d583-4af2-986a-fdd5837af2aa.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/fa9c38b6-a9ba-4c11-9c38-b6a9ba4c1104.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/fe4adee9-8175-4bf9-8ade-e981755bf9d6.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/images/fe52fa17-3c3d-4056-92fa-173c3d90564f.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Imaging.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Imaging.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/controller/PhotoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/controller/PhotoServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/cars.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/cars.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/imager.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/imager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/public/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/public/search.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Airbag.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Airbag.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/App$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/App$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/App$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/App$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/App$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/App$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/App$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/App.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/App.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Car.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Car.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Imaging.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Imaging.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/controller/PhotoServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/controller/PhotoServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/cars.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/public/cars.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/imager.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/public/imager.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/public/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/public/search.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,6 +104,7 @@
       <workItem from="1671624608528" duration="3025000" />
       <workItem from="1672921066610" duration="39000" />
       <workItem from="1673525884650" duration="4410000" />
+      <workItem from="1676553462131" duration="32000" />
     </task>
     <task id="LOCAL-00001" summary="Lekcja01">
       <created>1665388551058</created>
@@ -248,7 +176,14 @@
       <option name="project" value="LOCAL" />
       <updated>1676122419609</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="powinien byc max">
+      <created>1676122513631</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1676122513631</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -274,6 +209,7 @@
     <MESSAGE value="crop zostal" />
     <MESSAGE value="no crop dziala ale tak smiesznie" />
     <MESSAGE value="gitignore update?" />
-    <option name="LAST_COMMIT_MESSAGE" value="gitignore update?" />
+    <MESSAGE value="powinien byc max" />
+    <option name="LAST_COMMIT_MESSAGE" value="powinien byc max" />
   </component>
 </project>
